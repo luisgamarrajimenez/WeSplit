@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    let friends: [String] = ["Daniel", "Diego", "Maggie"]
+    @State private var selectedFriend: Int = 0
     
-    @State private var userName: String = String()
     
     var body: some View {
-        Form {
-            TextField("Enter your name", text: $userName)
-            Text(userName)
+        VStack {
+            Picker("Select your favorite friends", selection: $selectedFriend) {
+                ForEach(0 ..< friends.count) {
+                    Text(self.friends[$0])
+                }
+            }
+            Text("You chose: \(friends[selectedFriend])")
         }
     }
 }
